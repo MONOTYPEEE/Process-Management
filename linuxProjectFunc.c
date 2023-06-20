@@ -34,7 +34,7 @@ void InitSwManager(swManager* info) //Init struct swManager
 void readFileList(swManager* info)
 {
     FILE* fp;
-    fp = fopen("./FileList", "r");
+    fp = fopen("./blockList.txt", "r"); //블록리스트 열기(RO)
     char str[MAX_STR];
     int swno = 0;
 
@@ -162,7 +162,7 @@ void LogInterface(swManager* info)
 
     system("clear");
     printf(" _____________________________________________________________________________________________ \n");
-    printf("| Process name | Restart count |       Start time        |               Reason               |\n");
+    printf("|  Block name  | Restart count |       Start time        |               Reason               |\n");
     printf("|______________|_______________|_________________________|____________________________________|\n");
 
     for(int i = 0; i < info->p_no; i++)

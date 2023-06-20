@@ -8,10 +8,10 @@
 int main()
 {
     int status;
-    char exit_code[50];
+    char exitCode[50];
 
     swManager* mySwInfo = (swManager*)malloc(sizeof(swManager));
-    InitSwManager(mySwInfo);
+    InitSwManager(mySwInfo); //변수 초기화
 
     readFileList(mySwInfo);
     InitSWBlock(mySwInfo);
@@ -27,12 +27,12 @@ int main()
             sprintf(mySwInfo->sw_info[idx].restart_count, "%d", mySwInfo->sw_info[idx].int_restart);
 
             if(WIFEXITED(status)) {
-                sprintf(exit_code, "EXIT(%d)", WEXITSTATUS(status));
-                strcpy(mySwInfo->sw_info[idx].reason, exit_code);
+                sprintf(exitCode, "EXIT(%d)", WEXITSTATUS(status));
+                strcpy(mySwInfo->sw_info[idx].reason, exitCode);
             }
             else if(WIFSIGNALED(status)) {
-                sprintf(exit_code, "SIGNAL(%d).%s", WTERMSIG(status), strsignal(WTERMSIG(status)));
-                strcpy(mySwInfo->sw_info[idx].reason, exit_code);
+                sprintf(exitCode, "SIGNAL(%d).%s", WTERMSIG(status), strsignal(WTERMSIG(status)));
+                strcpy(mySwInfo->sw_info[idx].reason, exitCode);
             }
 
             restartProcess(mySwInfo, idx);
