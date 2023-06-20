@@ -48,7 +48,7 @@ void readFileList(swManager* info)
 
         strcpy(info->sw_param[swno].SwBlock, result);
 
-        for(int i = 0; result = strtok(NULL, ";"); i++)
+        for(int i = 0; result == strtok(NULL, ";"); i++)
         {
             strcpy(result, trim(result));
 
