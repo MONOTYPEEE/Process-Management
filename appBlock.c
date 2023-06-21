@@ -31,12 +31,19 @@ char *gettime(void) {
     return str;
 }
 
+int useRandom() {
+    // 시드(seed) 값을 현재 시간으로 설정
+    srand(getpid());
+
+    // 0에서 100 사이의 랜덤 값 생성
+    return rand() % 11;
+}
+
 int main(int argc, char **argv) {
     struct timeval tv;
     gettimeofday(&tv, NULL);
 
-    srand(tv.tv_usec);
-    int ran = random();
+    int ran = useRandom();
 
     mkdir(LOGDIR, 0775);
     chdir(LOGDIR);
