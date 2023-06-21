@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
     fclose(fp);
     sleep(ran % 20 + 1);
 
-    if (ran % 2){ //odd => signal
+    if (ran % 2) { //odd => signal
         int signum = ((ran / 2) % 15 + 1);
 
         FILE *fp = fopen(LOGFILE, "a");

@@ -13,8 +13,7 @@
 
 #include "linuxProject.h"
 
-void InitSwManager(swManager* info) //Init struct swManager
-{
+void InitSwManager(swManager* info) { //Init struct swManager
     info->p_no = 0;
     info->dpid = 0;
     for(int i = 0; i < BLOCK_COUNT; i++) {
@@ -31,15 +30,13 @@ void InitSwManager(swManager* info) //Init struct swManager
     }
 }
 
-void readFileList(swManager* info)
-{
+void readFileList(swManager* info) {
     FILE* fp;
     fp = fopen("./blockList.txt", "r"); //블록리스트 열기(RO)
     char str[MAX_STR];
     int swno = 0;
 
-    while(fgets(str, MAX_STR, fp))
-    {
+    while(fgets(str, MAX_STR, fp)) {
         String result;
         str[strlen(str)-1] = 0; // cut \n
         
@@ -48,12 +45,10 @@ void readFileList(swManager* info)
 
         strcpy(info->sw_param[swno].SwBlock, result);
 
-        for(int i = 0; result == strtok(NULL, ";"); i++)
-        {
+        for(int i = 0; result == strtok(NULL, ";"); i++) {
             strcpy(result, trim(result));
 
-            switch (i)
-            {
+            switch (i) {
             case 0:
                 strcpy(info->sw_param[swno].App_para1, result);
                 break;
@@ -75,13 +70,11 @@ void readFileList(swManager* info)
     info->p_no = swno;
 }
 
-void InitSWBlock(swManager* info)
-{
+void InitSWBlock(swManager* info) {
     pid_t pid;
     int i, status;
 
-    for(i = 0; i < info->p_no; i++)
-    {
+    for(i = 0; i < info->p_no; i++) {
         strcpy(info->sw_info[i].name, info->sw_param[i].SwBlock);
         sprintf(info->sw_info[i].reason, "Init.");
         sprintf(info->sw_info[i].restart_count, "%d", 0);
@@ -106,8 +99,7 @@ void InitSWBlock(swManager* info)
     }
 }
 
-void restartProcess(swManager* info, int index)
-{
+void restartProcess(swManager* info, int index) {
     pid_t pid;
 
     pid = fork();
@@ -126,12 +118,9 @@ void restartProcess(swManager* info, int index)
     }
 }
 
-int FindIndex(swManager* info)
-{
-    for(int i = 0; i < info->p_no; i++)
-    {
-        if(info->dpid == info->pids[i])
-        {
+int FindIndex(swManager* info) {
+    for(int i = 0; i < info->p_no; i++) {
+        if(info->dpid == info->pids[i]) {
             return i;
         }
     }
@@ -139,8 +128,7 @@ int FindIndex(swManager* info)
     return -1;
 }
 
-void LogWrite(swInfo* list)
-{
+void LogWrite(swInfo* list) {
     mkdir(LOGDIR, 0755);
     chdir(LOGDIR);
 
@@ -156,8 +144,7 @@ void LogWrite(swInfo* list)
     chdir("../");
 }
 
-void LogInterface(swManager* info)
-{
+void LogInterface(swManager* info) {
     char param[10];
 
     system("clear");
@@ -165,8 +152,7 @@ void LogInterface(swManager* info)
     printf("|  Block name  | Restart count |       Start time        |               Reason               |\n");
     printf("|______________|_______________|_________________________|____________________________________|\n");
 
-    for(int i = 0; i < info->p_no; i++)
-    {
+    for(int i = 0; i < info->p_no; i++) {
         printf("| %12s |", info->sw_info[i].name);
         printf(" %13s |", info->sw_info[i].restart_count);
         printf(" %s|", info->sw_info[i].start_time);
@@ -176,17 +162,14 @@ void LogInterface(swManager* info)
     printf("|______________|_______________|_________________________|____________________________________|\n");
 }
 
-char* rtrim(const char* s)
-{
+char* rtrim(const char* s) {
     while(isspace(*s) || !isprint(*s)) ++s;
     return strdup(s);
 }
 
-char* ltrim(const char* s)
-{
+char* ltrim(const char* s) {
     char* r = strdup(s);
-    if(r != NULL)
-    {
+    if(r != NULL) {
         char* fr = r + strlen(s) - 1;
         while((isspace(*fr) || !isprint(*fr) || *fr == 0) && fr >= r) --fr;
         *++fr = 0;
@@ -194,16 +177,14 @@ char* ltrim(const char* s)
     return r;
 }
 
-char* trim(const char* s)
-{
+char* trim(const char* s) {
     char* r = rtrim(s);
     char* f = rtrim(r);
     free(r);
     return f;
 }
 
-char *gettime(void)
-{
+char *gettime(void) {
     struct timeval tv;
 
     gettimeofday(&tv, NULL);

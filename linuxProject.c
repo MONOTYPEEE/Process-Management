@@ -5,8 +5,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-int main()
-{
+int main() {
     int status;
     char exitCode[50];
 
@@ -16,8 +15,7 @@ int main()
     readFileList(mySwInfo);
     InitSWBlock(mySwInfo);
 
-    while(1)
-    {
+    while(1) {
         mySwInfo->dpid = waitpid(-1, &status, 0);
 
         if(mySwInfo->dpid != -1)
