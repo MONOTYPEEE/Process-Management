@@ -35,7 +35,7 @@ int useRandom() {
     // 시드(seed) 값을 현재 시간으로 설정
     srand(getpid());
 
-    // 0에서 100 사이의 랜덤 값 생성
+    // 0에서 10 사이의 랜덤 값 생성
     return rand() % 11;
 }
 
