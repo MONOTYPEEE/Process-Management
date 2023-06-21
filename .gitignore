@@ -1,0 +1,10 @@
+//appBlock.c 기반 프로그램
+appBlock0
+appBlock1
+appBlock2
+
+//로그 폴더
+/log/*
+
+//출력 파일
+*.out
