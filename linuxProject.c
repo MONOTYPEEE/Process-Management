@@ -18,8 +18,7 @@ int main() {
     while(1) {
         mySwInfo->dpid = waitpid(-1, &status, 0);
 
-        if(mySwInfo->dpid != -1)
-        {
+        if(mySwInfo->dpid != -1) {
             int idx = FindIndex(mySwInfo);
             mySwInfo->sw_info[idx].int_restart++;
             sprintf(mySwInfo->sw_info[idx].restart_count, "%d", mySwInfo->sw_info[idx].int_restart);
