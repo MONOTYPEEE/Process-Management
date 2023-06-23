@@ -4,21 +4,4 @@
 
 ## 실행하기 위해서
 
-시스템의 바이너리에 따라 실행되지 않는 경우가 있어 실행 파일은 포함하지 않습니다.
-
----
-
-`appBlock0` `appBlock1` `appBlock2` 실행 파일이 필요합니다.
-
-```bash
-gcc appBlock.c -o appBlock0
-gcc appBlock.c -o appBlock1
-gcc appBlock.c -o appBlock2
-```
-
----
-`linuxProject.c` `linuxProjectFunc.c` 파일은 한 파일로 컴파일해야 합니다
-
-```bash
-gcc linuxProject.c linuxProjectFunc.c
-```
+`make` 하십쇼
