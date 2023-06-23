@@ -31,7 +31,7 @@ char *gettime(void) {
     return str;
 }
 
-int useRandom() {
+int RandomByPID() {
     srand(getpid());
     return rand() % 11;
 }
@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
     struct timeval tv;
     gettimeofday(&tv, NULL);
 
-    int ran = useRandom();
+    int ran = RandomByPID();
 
     mkdir(LOGDIR, 0775);
     chdir(LOGDIR);

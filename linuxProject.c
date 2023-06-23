@@ -10,10 +10,10 @@ int main() {
     char exitCode[50];
 
     swManager* mySwInfo = (swManager*)malloc(sizeof(swManager));
-    InitSwManager(mySwInfo); //변수 초기화
+    InitSwM(mySwInfo); //변수 초기화
 
     readFileList(mySwInfo);
-    InitSWBlock(mySwInfo);
+    SpawnBlock(mySwInfo);
 
     while(1) {
         mySwInfo->dpid = waitpid(-1, &status, 0);
@@ -33,9 +33,9 @@ int main() {
                 strcpy(mySwInfo->sw_info[idx].reason, exitCode);
             }
 
-            restartProcess(mySwInfo, idx);
-            LogWrite(&(mySwInfo->sw_info[idx]));
-            LogInterface(mySwInfo);
+            respawnProcess(mySwInfo, idx);
+            FileLogger(&(mySwInfo->sw_info[idx]));
+            LogPrint(mySwInfo);
         }
     }
 }

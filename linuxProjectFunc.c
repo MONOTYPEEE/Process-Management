@@ -13,7 +13,7 @@
 
 #include "linuxProject.h"
 
-void InitSwManager(swManager* info) { //Init struct swManager
+void InitSwM(swManager* info) { //Init struct swManager
     info->p_no = 0;
     info->dpid = 0;
     for(int i = 0; i < BLOCK_COUNT; i++) {
@@ -70,7 +70,7 @@ void readFileList(swManager* info) {
     info->p_no = swno;
 }
 
-void InitSWBlock(swManager* info) {
+void SpawnBlock(swManager* info) {
     pid_t pid;
     int i, status;
 
@@ -80,8 +80,8 @@ void InitSWBlock(swManager* info) {
         sprintf(info->sw_info[i].restart_count, "%d", 0);
         strcpy(info->sw_info[i].start_time, gettime());
 
-        LogWrite(&(info->sw_info[i]));
-        LogInterface(info);
+        FileLogger(&(info->sw_info[i]));
+        LogPrint(info);
 
         pid = fork();
 
@@ -99,7 +99,7 @@ void InitSWBlock(swManager* info) {
     }
 }
 
-void restartProcess(swManager* info, int index) {
+void respawnProcess(swManager* info, int index) {
     pid_t pid;
 
     pid = fork();
@@ -128,7 +128,7 @@ int FindIndex(swManager* info) {
     return -1;
 }
 
-void LogWrite(swInfo* list) {
+void FileLogger(swInfo* list) {
     mkdir(LOGDIR, 0755);
     chdir(LOGDIR);
 
@@ -144,7 +144,7 @@ void LogWrite(swInfo* list) {
     chdir("../");
 }
 
-void LogInterface(swManager* info) {
+void LogPrint(swManager* info) {
     char param[10];
 
     system("clear");
