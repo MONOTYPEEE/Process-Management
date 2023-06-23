@@ -34,7 +34,7 @@ typedef struct _swInfoManager {
     swParam sw_param[BLOCK_COUNT];  // struct swParam array
 } swManager;
 
-void InitSwM(swManager* info);
+void InitStruct(swManager* info);
 void readFileList(swManager* info);
 void SpawnBlock(swManager* info);
 void respawnProcess(swManager* info, int index);
@@ -46,5 +46,6 @@ char* ltrim(const char* s);
 char* trim(const char* s);
 char *gettime(void);
 void FileLogger(swInfo* list);
+void DeadFinder();
 
 #endif

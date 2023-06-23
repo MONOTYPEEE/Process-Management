@@ -13,7 +13,7 @@
 
 #include "linuxProject.h"
 
-void InitSwM(swManager* info) { //Init struct swManager
+void InitStruct(swManager* info) { //Init struct swManager
     info->p_no = 0;
     info->dpid = 0;
     for(int i = 0; i < BLOCK_COUNT; i++) {

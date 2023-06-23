@@ -10,7 +10,7 @@ int main() {
     char exitCode[50];
 
     swManager* mySwInfo = (swManager*)malloc(sizeof(swManager));
-    InitSwM(mySwInfo); //변수 초기화
+    InitStruct(mySwInfo); //변수 초기화
 
     readFileList(mySwInfo);
     SpawnBlock(mySwInfo);
